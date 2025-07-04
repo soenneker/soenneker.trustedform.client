@@ -34,15 +34,11 @@ public sealed class TrustedFormClient : ITrustedFormClient
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _httpClientCache.RemoveSync(nameof(TrustedFormClient));
     }
 
     public ValueTask DisposeAsync()
     {
-        GC.SuppressFinalize(this);
-
         return _httpClientCache.Remove(nameof(TrustedFormClient));
     }
 }
