@@ -15,8 +15,7 @@ public static class TrustedFormClientRegistrar
     /// </summary>
     public static IServiceCollection AddTrustedFormClientAsSingleton(this IServiceCollection services)
     {
-        services.AddHttpClientCacheAsSingleton()
-                .TryAddSingleton<ITrustedFormClient, TrustedFormClient>();
+        services.AddHttpClientCacheAsSingleton().TryAddSingleton<ITrustedFormClient, TrustedFormClient>();
 
         return services;
     }
@@ -26,8 +25,7 @@ public static class TrustedFormClientRegistrar
     /// </summary>
     public static IServiceCollection AddTrustedFormClientAsScoped(this IServiceCollection services)
     {
-        services.AddHttpClientCacheAsSingleton()
-                .TryAddScoped<ITrustedFormClient, TrustedFormClient>();
+        services.AddHttpClientCacheAsSingleton().TryAddScoped<ITrustedFormClient, TrustedFormClient>();
 
         return services;
     }
