@@ -19,12 +19,8 @@ public sealed class TrustedFormClient : ITrustedFormClient
 
     public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        return _httpClientCache.Get(nameof(TrustedFormClient), () =>
-        {
-            var options = new HttpClientOptions();
-
-            return options;
-        }, cancellationToken: cancellationToken);
+        // No closure: static lambda with no state needed
+        return _httpClientCache.Get(nameof(TrustedFormClient), static () => new HttpClientOptions(), cancellationToken);
     }
 
     public void Dispose()
