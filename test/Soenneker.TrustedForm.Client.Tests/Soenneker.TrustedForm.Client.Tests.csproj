@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.TrustedForm.Client.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.TrustedForm.Client\Soenneker.TrustedForm.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>
