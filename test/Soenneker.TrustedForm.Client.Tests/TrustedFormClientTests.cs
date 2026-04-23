@@ -1,20 +1,19 @@
-﻿using Soenneker.TrustedForm.Client.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.TrustedForm.Client.Abstract;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.TrustedForm.Client.Tests;
 
-[Collection("Collection")]
-public class TrustedFormClientTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class TrustedFormClientTests : HostedUnitTest
 {
     private readonly ITrustedFormClient _httpclient;
 
-    public TrustedFormClientTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public TrustedFormClientTests(Host host) : base(host)
     {
         _httpclient = Resolve<ITrustedFormClient>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
