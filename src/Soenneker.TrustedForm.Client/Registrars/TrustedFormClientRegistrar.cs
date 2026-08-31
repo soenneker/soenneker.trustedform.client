@@ -6,7 +6,7 @@ using Soenneker.Utils.HttpClientCache.Registrar;
 namespace Soenneker.TrustedForm.Client.Registrars;
 
 /// <summary>
-/// A .NET thread-safe singleton HttpClient for GitHub
+/// Registers the cached TrustedForm HTTP transport.
 /// </summary>
 public static class TrustedFormClientRegistrar
 {

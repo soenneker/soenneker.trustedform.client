@@ -6,12 +6,12 @@ using System.Threading;
 namespace Soenneker.TrustedForm.Client.Abstract;
 
 /// <summary>
-/// A .NET thread-safe singleton HttpClient for 
+/// Provides an owned, cached <see cref="HttpClient"/> transport for TrustedForm API integrations.
 /// </summary>
-public interface ITrustedFormClient: IDisposable, IAsyncDisposable
+public interface ITrustedFormClient : IDisposable, IAsyncDisposable
 {
     /// <summary>
-    /// Gets the value.
+    /// Gets the cached HTTP transport.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task containing the result of the operation.</returns>

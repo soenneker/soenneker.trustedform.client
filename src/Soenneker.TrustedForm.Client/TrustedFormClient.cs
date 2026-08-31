@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading;
+using System;
 using System.Threading.Tasks;
 using Soenneker.Dtos.HttpClientOptions;
 using Soenneker.TrustedForm.Client.Abstract;
@@ -7,10 +8,10 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.TrustedForm.Client;
 
-///<inheritdoc cref="ITrustedFormClient"/>
 public sealed class TrustedFormClient : ITrustedFormClient
 {
     private readonly IHttpClientCache _httpClientCache;
+    private readonly string _cacheKey = $"{nameof(TrustedFormClient)}-{Guid.NewGuid():N}";
 
     public TrustedFormClient(IHttpClientCache httpClientCache)
     {
@@ -19,8 +20,7 @@ public sealed class TrustedFormClient : ITrustedFormClient
 
     public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        // No closure: static lambda with no state needed
-        return _httpClientCache.Get(nameof(TrustedFormClient), static () => new HttpClientOptions(), cancellationToken);
+        return _httpClientCache.Get(_cacheKey, static () => new HttpClientOptions(), cancellationToken);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public sealed class TrustedFormClient : ITrustedFormClient
     /// </summary>
     public void Dispose()
     {
-        _httpClientCache.RemoveSync(nameof(TrustedFormClient));
+        _httpClientCache.RemoveSync(_cacheKey);
     }
 
     /// <summary>
@@ -37,6 +37,6 @@ public sealed class TrustedFormClient : ITrustedFormClient
     /// <returns>A task that represents the asynchronous operation.</returns>
     public ValueTask DisposeAsync()
     {
-        return _httpClientCache.Remove(nameof(TrustedFormClient));
+        return _httpClientCache.Remove(_cacheKey);
     }
 }
