@@ -8,6 +8,7 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.TrustedForm.Client;
 
+/// <inheritdoc cref="ITrustedFormClient" />
 public sealed class TrustedFormClient : ITrustedFormClient
 {
     private readonly IHttpClientCache _httpClientCache;
